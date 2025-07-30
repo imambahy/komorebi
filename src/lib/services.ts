@@ -5,14 +5,13 @@ import { BlogPost, TeamMember, Service, Testimonial } from '@/types';
 export const getServices = async (): Promise<Service[]> => {
   try {
     console.log('Fetching services...');
-    const result: any = await Backendless.Data.of('Services').find();
+    const result: unknown = await Backendless.Data.of('Services').find();
     console.log('Services result:', result);
     
-    // Handle different response formats
     if (Array.isArray(result)) {
       return result as Service[];
-    } else if (result && result.data) {
-      return result.data as Service[];
+    } else if (result && typeof result === 'object' && 'data' in result) {
+      return (result as { data: Service[] }).data;
     } else {
       return [];
     }
@@ -26,14 +25,13 @@ export const getServices = async (): Promise<Service[]> => {
 export const getTestimonials = async (): Promise<Testimonial[]> => {
   try {
     console.log('Fetching testimonials...');
-    const result: any = await Backendless.Data.of('Testimonials').find();
+    const result: unknown = await Backendless.Data.of('Testimonials').find();
     console.log('Testimonials result:', result);
     
-    // Handle different response formats
     if (Array.isArray(result)) {
       return result as Testimonial[];
-    } else if (result && result.data) {
-      return result.data as Testimonial[];
+    } else if (result && typeof result === 'object' && 'data' in result) {
+      return (result as { data: Testimonial[] }).data;
     } else {
       return [];
     }
@@ -47,14 +45,13 @@ export const getTestimonials = async (): Promise<Testimonial[]> => {
 export const getTeamMembers = async (): Promise<TeamMember[]> => {
   try {
     console.log('Fetching team members...');
-    const result: any = await Backendless.Data.of('team_members').find();
+    const result: unknown = await Backendless.Data.of('team_members').find();
     console.log('Team members result:', result);
     
-    // Handle different response formats
     if (Array.isArray(result)) {
       return result as TeamMember[];
-    } else if (result && result.data) {
-      return result.data as TeamMember[];
+    } else if (result && typeof result === 'object' && 'data' in result) {
+      return (result as { data: TeamMember[] }).data;
     } else {
       return [];
     }
@@ -68,14 +65,13 @@ export const getTeamMembers = async (): Promise<TeamMember[]> => {
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     console.log('Fetching blog posts...');
-    const result: any = await Backendless.Data.of('blog_posts').find();
+    const result: unknown = await Backendless.Data.of('blog_posts').find();
     console.log('Blog posts result:', result);
     
-    // Handle different response formats
     if (Array.isArray(result)) {
       return result as BlogPost[];
-    } else if (result && result.data) {
-      return result.data as BlogPost[];
+    } else if (result && typeof result === 'object' && 'data' in result) {
+      return (result as { data: BlogPost[] }).data;
     } else {
       return [];
     }
