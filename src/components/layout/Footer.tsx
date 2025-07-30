@@ -122,7 +122,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-gray-800">
           <p className="text-center text-gray-400">
-            © 2024 Komorebi. All rights reserved.
+            © 2025 Komorebi. All rights reserved.
           </p>
         </div>
       </div>
