@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { AnimatedDiv } from "@/lib/animations";
 
 const Hero = () => {
   return (
@@ -12,19 +15,35 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/20"></div>
       <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-            Building the Future with
-            <span className="block" style={{ color: "#FFC300" }}>
-              Innovation
-            </span>
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-200 max-w-3xl mx-auto">
-            We are a leading technology company dedicated to creating innovative
-            solutions that transform businesses and enhance people&apos;s lives.
-            Our team of experts delivers cutting-edge products and services that
-            drive success.
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <AnimatedDiv 
+            className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6"
+            animation="fadeIn"
+            delay={0.2}
+          >
+            <h1>
+              Building the Future with
+              <span className="block" style={{ color: "#FFC300" }}>
+                Innovation
+              </span>
+            </h1>
+          </AnimatedDiv>
+          <AnimatedDiv 
+            className="mt-6 text-lg leading-8 text-gray-200 max-w-3xl mx-auto"
+            animation="fadeIn"
+            delay={0.4}
+          >
+            <p>
+              We are a leading technology company dedicated to creating innovative
+              solutions that transform businesses and enhance people&apos;s lives.
+              Our team of experts delivers cutting-edge products and services that
+              drive success.
+            </p>
+          </AnimatedDiv>
+          <AnimatedDiv 
+            className="mt-10 flex items-center justify-center gap-x-6"
+            animation="fadeIn"
+            delay={0.6}
+          >
             <Link href="/services">
               <button
                 className="px-8 py-3 rounded-md font-semibold text-lg shadow-lg transition-all duration-200 transform hover:scale-105"
@@ -49,7 +68,7 @@ const Hero = () => {
                 Learn More
               </button>
             </Link>
-          </div>
+          </AnimatedDiv>
         </div>
       </div>
     </div>

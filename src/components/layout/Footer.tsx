@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#000814" }} className="text-white">
+    <footer 
+      style={{ backgroundColor: "#000814" }} 
+      className="text-white"
+    >
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">

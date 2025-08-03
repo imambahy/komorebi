@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Service } from "@/types";
 import { getServices } from "@/lib/services";
 import Image from "next/image";
+import { AnimatedDiv } from "@/lib/animations";
 
 const ServicesSection = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -72,7 +73,11 @@ const ServicesSection = () => {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <AnimatedDiv 
+          className="mx-auto max-w-2xl text-center"
+          animation="fadeIn"
+          delay={0.2}
+        >
           <h2
             className="text-3xl font-bold tracking-tight sm:text-4xl"
             style={{ color: "#003566" }}
@@ -83,14 +88,16 @@ const ServicesSection = () => {
             We offer comprehensive technology solutions to help your business
             grow and succeed in the digital age.
           </p>
-        </div>
+        </AnimatedDiv>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
           {services.length > 0 ? (
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-4">
-              {services.map((service) => (
-                <div
+              {services.map((service, index) => (
+                <AnimatedDiv
                   key={service.objectId}
                   className="flex flex-col bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+                  animation="fadeIn"
+                  delay={0.1 * index}
                 >
                   {/* Service Image */}
                   {service.image && (
@@ -144,7 +151,7 @@ const ServicesSection = () => {
                       </Link>
                     </p>
                   </dd>
-                </div>
+                </AnimatedDiv>
               ))}
             </dl>
           ) : (

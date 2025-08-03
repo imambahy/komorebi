@@ -4,8 +4,11 @@ import React, { useEffect, useState } from "react";
 import { TeamMember } from "@/types";
 import { getTeamMembers } from "@/lib/services";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/lib/animations";
 
 const TeamsSection = () => {
+  const { ref, isInView } = useScrollAnimation();
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,9 +27,14 @@ const TeamsSection = () => {
   }, []);
 
   return (
-    <div id="teams" className="bg-white py-24 sm:py-32">
+    <div id="teams" className="bg-white py-24 sm:py-32" ref={ref}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+        <motion.div 
+          className="mx-auto max-w-2xl text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <h2
             className="text-3xl font-bold tracking-tight sm:text-4xl"
             style={{ color: "#003566" }}
@@ -36,7 +44,7 @@ const TeamsSection = () => {
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Meet the people behind our success.
           </p>
-        </div>
+        </motion.div>
         {loading ? (
           <div className="flex justify-center">
             <div
@@ -46,10 +54,14 @@ const TeamsSection = () => {
           </div>
         ) : (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <div
+            {team.map((member, index) => (
+              <motion.div
                 key={member.objectId}
                 className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 flex flex-col items-center"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                whileHover={{ y: -5, scale: 1.02 }}
               >
                 <Image
                   src={member.image}
@@ -86,7 +98,7 @@ const TeamsSection = () => {
                     LinkedIn
                   </a>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         )}

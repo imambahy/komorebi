@@ -5,6 +5,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { Testimonial } from "@/types";
 import { getTestimonials } from "@/lib/services";
 import Image from "next/image";
+import { AnimatedDiv } from "@/lib/animations";
 
 const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -84,7 +85,11 @@ const TestimonialsSection = () => {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-xl text-center">
+        <AnimatedDiv 
+          className="mx-auto max-w-xl text-center"
+          animation="fadeIn"
+          delay={0.2}
+        >
           <h2
             className="text-lg font-semibold leading-8 tracking-tight"
             style={{ color: "#FFC300" }}
@@ -97,14 +102,16 @@ const TestimonialsSection = () => {
           >
             What our clients say
           </p>
-        </div>
+        </AnimatedDiv>
         <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
           {testimonials.length > 0 ? (
             <div className="-mt-6 grid grid-cols-1 gap-8 sm:-mt-8 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial) => (
-                <div
+              {testimonials.map((testimonial, index) => (
+                <AnimatedDiv
                   key={testimonial.objectId}
                   className="pt-8 sm:inline-block sm:w-full sm:px-4"
+                  animation="fadeIn"
+                  delay={0.1 * index}
                 >
                   <figure className="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
                     <blockquote className="text-gray-900">
@@ -156,7 +163,7 @@ const TestimonialsSection = () => {
                       </div>
                     </figcaption>
                   </figure>
-                </div>
+                </AnimatedDiv>
               ))}
             </div>
           ) : (
